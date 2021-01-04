@@ -1,0 +1,5 @@
+type DataPoint @model {
+  date: String!
+  vaccinated: String!
+  modified: String
+}
