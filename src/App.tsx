@@ -1,17 +1,52 @@
 import React from 'react';
 import './App.css';
 import { Graph, GraphProps } from './components/Graph';
-// import logo from './logo.svg';
+import { listDataPoints } from './graphql/queries';
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import awsconfig from './aws-exports';
 
-const data: GraphProps = {'data': [{'id': 'fake-data',
-  'data': [{ 'x': '2020-12-15', 'y': 0.0},
-    { 'x': '2020-12-22', 'y': 0.0025 },
-    { 'x': '2020-12-29', 'y': 0.005 },
-    { 'x': '2021-01-05', 'y': 0.0075 },
-    { 'x': '2021-01-12', 'y': 0.01 }]}]}
+Amplify.configure(awsconfig);
+
+type DataPoint = {
+  date: string,
+  vaccinated: number,
+  modified: string
+}
+
+type GraphDataPoint = {
+  x: string,
+  y: number
+}
+
+function dataPointsToGraphDataPoints(points: DataPoint[]): GraphDataPoint[] {
+  return points.map((point) => {
+    return { 'x': point.date, 'y': point.vaccinated };
+  });
+}
+
+function GetGraph() {
+
+  var data = new Array<DataPoint>();
+
+  // queries and mutations return Promises; subscriptions return Observables
+  (API.graphql(graphqlOperation(listDataPoints)) as Promise<DataPoint[]>).then((result) => {
+    console.log(result);
+    data = result;
+  }).catch(console.error);
+
+  const props: GraphProps = {
+    'data': [{
+      'id': 'graphql-data',
+      'data': dataPointsToGraphDataPoints(data)
+    }]
+  };
+  return Graph(props);
+}
 
 function App() {
-  const graph = Graph(data);
+
+  const graph = GetGraph();
+
   return (
     <div className='App'>
       {graph}

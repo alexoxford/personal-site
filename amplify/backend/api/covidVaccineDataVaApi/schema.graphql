@@ -1,5 +1,160 @@
-type DataPoint @model {
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type DataPoint {
+  createdAt: AWSDateTime!
   date: String!
-  vaccinated: String!
   modified: String
+  updatedAt: AWSDateTime!
+  vaccinated: String!
+}
+
+type ModelDataPointConnection {
+  items: [DataPoint]
+  nextToken: String
+}
+
+type Mutation {
+  createDataPoint(condition: ModelDataPointConditionInput, input: CreateDataPointInput!): DataPoint
+  deleteDataPoint(condition: ModelDataPointConditionInput, input: DeleteDataPointInput!): DataPoint
+  updateDataPoint(condition: ModelDataPointConditionInput, input: UpdateDataPointInput!): DataPoint
+}
+
+type Query {
+  getDataPoint(date: String!): DataPoint
+  listDataPoints(filter: ModelDataPointFilterInput, limit: Int, nextToken: String): ModelDataPointConnection
+}
+
+type Subscription {
+  onCreateDataPoint: DataPoint @aws_subscribe(mutations : ["createDataPoint"])
+  onDeleteDataPoint: DataPoint @aws_subscribe(mutations : ["deleteDataPoint"])
+  onUpdateDataPoint: DataPoint @aws_subscribe(mutations : ["updateDataPoint"])
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateDataPointInput {
+  date: String!
+  modified: String
+  vaccinated: String!
+}
+
+input DeleteDataPointInput {
+  date: String
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelDataPointConditionInput {
+  and: [ModelDataPointConditionInput]
+  date: ModelStringInput
+  modified: ModelStringInput
+  not: ModelDataPointConditionInput
+  or: [ModelDataPointConditionInput]
+  vaccinated: ModelStringInput
+}
+
+input ModelDataPointFilterInput {
+  and: [ModelDataPointFilterInput]
+  date: ModelStringInput
+  modified: ModelStringInput
+  not: ModelDataPointFilterInput
+  or: [ModelDataPointFilterInput]
+  vaccinated: ModelStringInput
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input UpdateDataPointInput {
+  date: String
+  modified: String
+  vaccinated: String
 }
