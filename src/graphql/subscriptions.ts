@@ -3,34 +3,52 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateDataPoint = /* GraphQL */ `
-  subscription OnCreateDataPoint {
-    onCreateDataPoint {
-      createdAt
+  subscription OnCreateDataPoint(
+    $date: String
+    $modified: String
+    $vaccinated: Int
+  ) {
+    onCreateDataPoint(
+      date: $date
+      modified: $modified
+      vaccinated: $vaccinated
+    ) {
       date
       modified
-      updatedAt
       vaccinated
     }
   }
 `;
 export const onDeleteDataPoint = /* GraphQL */ `
-  subscription OnDeleteDataPoint {
-    onDeleteDataPoint {
-      createdAt
+  subscription OnDeleteDataPoint(
+    $date: String
+    $modified: String
+    $vaccinated: Int
+  ) {
+    onDeleteDataPoint(
+      date: $date
+      modified: $modified
+      vaccinated: $vaccinated
+    ) {
       date
       modified
-      updatedAt
       vaccinated
     }
   }
 `;
 export const onUpdateDataPoint = /* GraphQL */ `
-  subscription OnUpdateDataPoint {
-    onUpdateDataPoint {
-      createdAt
+  subscription OnUpdateDataPoint(
+    $date: String
+    $modified: String
+    $vaccinated: Int
+  ) {
+    onUpdateDataPoint(
+      date: $date
+      modified: $modified
+      vaccinated: $vaccinated
+    ) {
       date
       modified
-      updatedAt
       vaccinated
     }
   }

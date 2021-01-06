@@ -8,7 +8,8 @@ import React from 'react';
 // website examples showcase many properties,
 // you'll often use just a few of them.
 
-export const Graph = ({ data }: GraphProps) => (
+export function Graph({ data }: GraphProps) {
+    return (
     <Line
         data={data}
         margin={{ top: 100, right: 100, bottom: 100, left: 100 }}
@@ -42,8 +43,8 @@ export const Graph = ({ data }: GraphProps) => (
         }}
         useMesh={true}
         enableSlices={false}
-    />
-);
+    />);
+}
 
 export type GraphProps = {
     data: Array<{

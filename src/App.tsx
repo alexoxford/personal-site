@@ -4,6 +4,7 @@ import { Graph, GraphProps } from './components/Graph';
 import { listDataPoints } from './graphql/queries';
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import awsconfig from './aws-exports';
+import { useAsync } from 'react-async'
 
 Amplify.configure(awsconfig);
 
@@ -19,20 +20,36 @@ type GraphDataPoint = {
 }
 
 function dataPointsToGraphDataPoints(points: DataPoint[]): GraphDataPoint[] {
-  return points.map((point) => {
-    return { 'x': point.date, 'y': point.vaccinated };
+  const population = 8536000;
+  return points
+  .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+  .map((point) => {
+    return { 'x': point.date, 'y': point.vaccinated/population };
   });
 }
 
-function GetGraph() {
+type DataPointList = {
+  data: {
+    listDataPoints: {
+      items: [DataPoint]
+    } | null
+  }
+}
 
-  var data = new Array<DataPoint>();
-
+const fetchData = async () => {
   // queries and mutations return Promises; subscriptions return Observables
-  (API.graphql(graphqlOperation(listDataPoints)) as Promise<DataPoint[]>).then((result) => {
-    console.log(result);
-    data = result;
-  }).catch(console.error);
+  return await (API.graphql(graphqlOperation(listDataPoints)) as Promise<DataPointList>)
+    .then(result => result.data.listDataPoints ? result.data.listDataPoints.items : new Array<DataPoint>())
+}
+
+function App() {
+
+  const { data, error, isLoading } = useAsync({ promiseFn: fetchData })
+
+  if (isLoading) { return (<p>"Loading..."</p>) }
+  if (error) { return (<p>error</p>) }
+
+  if (!data) { return (<p>"Data is undefined"</p>) }
 
   const props: GraphProps = {
     'data': [{
@@ -40,12 +57,7 @@ function GetGraph() {
       'data': dataPointsToGraphDataPoints(data)
     }]
   };
-  return Graph(props);
-}
-
-function App() {
-
-  const graph = GetGraph();
+  const graph = Graph(props);
 
   return (
     <div className='App'>
