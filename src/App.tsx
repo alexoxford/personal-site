@@ -61,7 +61,11 @@ function App() {
 
   return (
     <div className='App'>
+      <h1>Virginia COVID-19 Vaccination Progress</h1>
+
       {graph}
+
+      <p>The graph above shows the number of COVID-19 vaccine doses administered, as a percentage of the population of Virginia.</p>
     </div>
   );
 }
