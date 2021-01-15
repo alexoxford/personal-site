@@ -21,10 +21,11 @@ type GraphDataPoint = {
 
 function dataPointsToGraphDataPoints(points: DataPoint[]): GraphDataPoint[] {
   const population = 8536000;
+  const dosesNeeded = 2 * population;
   return points
   .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
   .map((point) => {
-    return { 'x': point.date, 'y': point.vaccinated/population };
+    return { 'x': point.date, 'y': point.vaccinated/dosesNeeded };
   });
 }
 
