@@ -66,7 +66,7 @@ function App() {
 
       {graph}
 
-      <p>The graph above shows the number of COVID-19 vaccine doses administered, as a percentage of the population of Virginia.</p>
+      <p>The graph above shows the number of COVID-19 vaccine doses administered, as a percentage of twice the population of Virginia (accounting for the need for two doses of the vaccine).</p>
     </div>
   );
 }
