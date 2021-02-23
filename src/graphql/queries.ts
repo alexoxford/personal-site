@@ -2,28 +2,56 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getDataPoint = /* GraphQL */ `
-  query GetDataPoint($date: String!) {
-    getDataPoint(date: $date) {
+export const getVaccineDataPoint = /* GraphQL */ `
+  query GetVaccineDataPoint($id: ID!) {
+    getVaccineDataPoint(id: $id) {
       date
-      modified
-      vaccinated
+      vaccinations
+      id
     }
   }
 `;
-export const listDataPoints = /* GraphQL */ `
-  query ListDataPoints(
-    $filter: TableDataPointFilterInput
+export const listVaccineDataPoints = /* GraphQL */ `
+  query ListVaccineDataPoints(
+    $filter: ModelVaccineDataPointFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listDataPoints(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listVaccineDataPoints(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         date
-        modified
-        vaccinated
+        vaccinations
+        id
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncVaccineDataPoints = /* GraphQL */ `
+  query SyncVaccineDataPoints(
+    $filter: ModelVaccineDataPointFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncVaccineDataPoints(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        date
+        vaccinations
+        id
+      }
+      nextToken
+      startedAt
     }
   }
 `;

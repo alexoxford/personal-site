@@ -48,9 +48,9 @@ export function Graph({ data }: GraphProps) {
 
 export type GraphProps = {
     data: Array<{
-        id: string
+        id: string,
         data: Array<{
-            x: string
+            x: string,
             y: number
         }>
     }>

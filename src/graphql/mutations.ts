@@ -2,30 +2,39 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createDataPoint = /* GraphQL */ `
-  mutation CreateDataPoint($input: CreateDataPointInput!) {
-    createDataPoint(input: $input) {
+export const createVaccineDataPoint = /* GraphQL */ `
+  mutation CreateVaccineDataPoint(
+    $input: CreateVaccineDataPointInput!
+    $condition: ModelVaccineDataPointConditionInput
+  ) {
+    createVaccineDataPoint(input: $input, condition: $condition) {
       date
-      modified
-      vaccinated
+      vaccinations
+      id
     }
   }
 `;
-export const deleteDataPoint = /* GraphQL */ `
-  mutation DeleteDataPoint($input: DeleteDataPointInput!) {
-    deleteDataPoint(input: $input) {
+export const updateVaccineDataPoint = /* GraphQL */ `
+  mutation UpdateVaccineDataPoint(
+    $input: UpdateVaccineDataPointInput!
+    $condition: ModelVaccineDataPointConditionInput
+  ) {
+    updateVaccineDataPoint(input: $input, condition: $condition) {
       date
-      modified
-      vaccinated
+      vaccinations
+      id
     }
   }
 `;
-export const updateDataPoint = /* GraphQL */ `
-  mutation UpdateDataPoint($input: UpdateDataPointInput!) {
-    updateDataPoint(input: $input) {
+export const deleteVaccineDataPoint = /* GraphQL */ `
+  mutation DeleteVaccineDataPoint(
+    $input: DeleteVaccineDataPointInput!
+    $condition: ModelVaccineDataPointConditionInput
+  ) {
+    deleteVaccineDataPoint(input: $input, condition: $condition) {
       date
-      modified
-      vaccinated
+      vaccinations
+      id
     }
   }
 `;
