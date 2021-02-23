@@ -1,0 +1,8 @@
+{
+    "CreateAPIKey": 1,
+    "AppSyncApiName": "personalSite",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-personalsite-staging-211919-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/293344c96a51f581172d56d55755c60875384e93"
+}

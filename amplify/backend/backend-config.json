@@ -1,6 +1,6 @@
 {
   "api": {
-    "covidvaccinedatava": {
+    "personalSite": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -9,19 +9,16 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
-              "description": ""
+              "description": "api key description"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
         }
       }
-    }
-  },
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
-      "type": "cicd",
-      "lastPushTimeStamp": "2021-01-04T19:21:02.533Z"
     }
   }
 }
