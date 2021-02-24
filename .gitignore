@@ -45,4 +45,3 @@ package-lock.json
 yarn.lock
 
 src/aws-exports.js
-package-lock.json
