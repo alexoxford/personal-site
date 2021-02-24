@@ -11,8 +11,8 @@ export type CreateVaccineDataPointInput = {
 export type ModelVaccineDataPointConditionInput = {
   date?: ModelStringInput | null,
   vaccinations?: ModelIntInput | null,
-  and?: Array< ModelVaccineDataPointConditionInput | null > | null,
-  or?: Array< ModelVaccineDataPointConditionInput | null > | null,
+  and?: Array<ModelVaccineDataPointConditionInput | null> | null,
+  or?: Array<ModelVaccineDataPointConditionInput | null> | null,
   not?: ModelVaccineDataPointConditionInput | null,
 };
 
@@ -25,7 +25,7 @@ export type ModelStringInput = {
   gt?: string | null,
   contains?: string | null,
   notContains?: string | null,
-  between?: Array< string | null > | null,
+  between?: Array<string | null> | null,
   beginsWith?: string | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
@@ -53,7 +53,7 @@ export type ModelSizeInput = {
   lt?: number | null,
   ge?: number | null,
   gt?: number | null,
-  between?: Array< number | null > | null,
+  between?: Array<number | null> | null,
 };
 
 export type ModelIntInput = {
@@ -63,7 +63,7 @@ export type ModelIntInput = {
   lt?: number | null,
   ge?: number | null,
   gt?: number | null,
-  between?: Array< number | null > | null,
+  between?: Array<number | null> | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
 };
@@ -89,8 +89,8 @@ export type ModelVaccineDataPointFilterInput = {
   date?: ModelStringInput | null,
   vaccinations?: ModelIntInput | null,
   id?: ModelIDInput | null,
-  and?: Array< ModelVaccineDataPointFilterInput | null > | null,
-  or?: Array< ModelVaccineDataPointFilterInput | null > | null,
+  and?: Array<ModelVaccineDataPointFilterInput | null> | null,
+  or?: Array<ModelVaccineDataPointFilterInput | null> | null,
   not?: ModelVaccineDataPointFilterInput | null,
 };
 
@@ -103,7 +103,7 @@ export type ModelIDInput = {
   gt?: string | null,
   contains?: string | null,
   notContains?: string | null,
-  between?: Array< string | null > | null,
+  between?: Array<string | null> | null,
   beginsWith?: string | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
@@ -112,7 +112,7 @@ export type ModelIDInput = {
 
 export type ModelVaccineDataPointConnection = {
   __typename: "ModelVaccineDataPointConnection",
-  items?:  Array<VaccineDataPoint | null > | null,
+  items?: Array<VaccineDataPoint | null> | null,
   nextToken?: string | null,
   startedAt?: number | null,
 };
@@ -123,7 +123,7 @@ export type CreateVaccineDataPointMutationVariables = {
 };
 
 export type CreateVaccineDataPointMutation = {
-  createVaccineDataPoint?:  {
+  createVaccineDataPoint?: {
     __typename: "VaccineDataPoint",
     date: string,
     vaccinations: number,
@@ -137,7 +137,7 @@ export type UpdateVaccineDataPointMutationVariables = {
 };
 
 export type UpdateVaccineDataPointMutation = {
-  updateVaccineDataPoint?:  {
+  updateVaccineDataPoint?: {
     __typename: "VaccineDataPoint",
     date: string,
     vaccinations: number,
@@ -151,7 +151,7 @@ export type DeleteVaccineDataPointMutationVariables = {
 };
 
 export type DeleteVaccineDataPointMutation = {
-  deleteVaccineDataPoint?:  {
+  deleteVaccineDataPoint?: {
     __typename: "VaccineDataPoint",
     date: string,
     vaccinations: number,
@@ -164,7 +164,7 @@ export type GetVaccineDataPointQueryVariables = {
 };
 
 export type GetVaccineDataPointQuery = {
-  getVaccineDataPoint?:  {
+  getVaccineDataPoint?: {
     __typename: "VaccineDataPoint",
     date: string,
     vaccinations: number,
@@ -179,14 +179,14 @@ export type ListVaccineDataPointsQueryVariables = {
 };
 
 export type ListVaccineDataPointsQuery = {
-  listVaccineDataPoints?:  {
+  listVaccineDataPoints?: {
     __typename: "ModelVaccineDataPointConnection",
-    items?:  Array< {
+    items?: Array<{
       __typename: "VaccineDataPoint",
       date: string,
       vaccinations: number,
       id: string,
-    } | null > | null,
+    } | null> | null,
     nextToken?: string | null,
     startedAt?: number | null,
   } | null,
@@ -200,21 +200,21 @@ export type SyncVaccineDataPointsQueryVariables = {
 };
 
 export type SyncVaccineDataPointsQuery = {
-  syncVaccineDataPoints?:  {
+  syncVaccineDataPoints?: {
     __typename: "ModelVaccineDataPointConnection",
-    items?:  Array< {
+    items?: Array<{
       __typename: "VaccineDataPoint",
       date: string,
       vaccinations: number,
       id: string,
-    } | null > | null,
+    } | null> | null,
     nextToken?: string | null,
     startedAt?: number | null,
   } | null,
 };
 
 export type OnCreateVaccineDataPointSubscription = {
-  onCreateVaccineDataPoint?:  {
+  onCreateVaccineDataPoint?: {
     __typename: "VaccineDataPoint",
     date: string,
     vaccinations: number,
@@ -223,7 +223,7 @@ export type OnCreateVaccineDataPointSubscription = {
 };
 
 export type OnUpdateVaccineDataPointSubscription = {
-  onUpdateVaccineDataPoint?:  {
+  onUpdateVaccineDataPoint?: {
     __typename: "VaccineDataPoint",
     date: string,
     vaccinations: number,
@@ -232,7 +232,7 @@ export type OnUpdateVaccineDataPointSubscription = {
 };
 
 export type OnDeleteVaccineDataPointSubscription = {
-  onDeleteVaccineDataPoint?:  {
+  onDeleteVaccineDataPoint?: {
     __typename: "VaccineDataPoint",
     date: string,
     vaccinations: number,

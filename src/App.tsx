@@ -1,35 +1,35 @@
-import React from 'react';
-import './App.css';
-import { Graph, GraphProps } from './components/Graph';
-import { listVaccineDataPoints } from './graphql/queries';
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
-import awsconfig from './aws-exports';
+import React from 'react'
+import './App.css'
+import { Graph, GraphProps } from './components/Graph'
+import { listVaccineDataPoints } from './graphql/queries'
+import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import awsconfig from './aws-exports'
 import { useAsync } from 'react-async'
 
-Amplify.configure(awsconfig);
+Amplify.configure(awsconfig)
 
-type DataPoint = {
-  date: string,
-  vaccinations: number,
+interface DataPoint {
+  date: string
+  vaccinations: number
   id: string
 }
 
-type GraphDataPoint = {
-  x: string,
+interface GraphDataPoint {
+  x: string
   y: number
 }
 
-function dataPointsToGraphDataPoints(points: DataPoint[]): GraphDataPoint[] {
-  const population = 8536000;
-  const dosesNeeded = 2 * population;
+function dataPointsToGraphDataPoints (points: DataPoint[]): GraphDataPoint[] {
+  const population = 8536000
+  const dosesNeeded = 2 * population
   return points
     .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
     .map((point) => {
-      return { 'x': point.date, 'y': point.vaccinations / dosesNeeded };
-    });
+      return { x: point.date, y: point.vaccinations / dosesNeeded }
+    })
 }
 
-type DataPointList = {
+interface DataPointList {
   data: {
     listVaccineDataPoints: {
       items: [DataPoint]
@@ -43,8 +43,7 @@ const fetchData = async () => {
     .then(result => result.data.listVaccineDataPoints ? result.data.listVaccineDataPoints.items : new Array<DataPoint>())
 }
 
-function App() {
-
+function App () {
   const { data, error, isLoading } = useAsync({ promiseFn: fetchData })
 
   if (isLoading) { return (<p>"Loading..."</p>) }
@@ -53,12 +52,12 @@ function App() {
   if (!data) { return (<p>"Data is undefined"</p>) }
 
   const props: GraphProps = {
-    'data': [{
-      'id': 'graphql-data',
-      'data': dataPointsToGraphDataPoints(data)
+    data: [{
+      id: 'graphql-data',
+      data: dataPointsToGraphDataPoints(data)
     }]
-  };
-  const graph = Graph(props);
+  }
+  const graph = Graph(props)
 
   return (
     <div className='App'>
@@ -68,7 +67,7 @@ function App() {
 
       <p>The graph above shows the number of COVID-19 vaccine doses administered, as a percentage of twice the population of Virginia (accounting for the need for two doses of the vaccine).</p>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
