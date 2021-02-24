@@ -12,4 +12,4 @@ const reportWebVitals = (onPerfEntry?: ReportHandler) => {
   }
 }
 
-export default reportWebVitals
+export default reportWebVitals // eslint-disable-line no-unused-labels

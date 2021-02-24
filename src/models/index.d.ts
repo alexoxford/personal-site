@@ -1,3 +1,5 @@
+/* eslint-disable */
+/* tslint:disable */
 import { ModelInit, MutableModel, PersistentModelConstructor } from '@aws-amplify/datastore'
 
 export declare class VaccineDataPoint {
