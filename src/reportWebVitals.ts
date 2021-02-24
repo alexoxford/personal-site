@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { ReportHandler } from 'web-vitals'
 
 const reportWebVitals = (onPerfEntry?: ReportHandler) => {
@@ -12,4 +13,4 @@ const reportWebVitals = (onPerfEntry?: ReportHandler) => {
   }
 }
 
-export default reportWebVitals // eslint-disable-line no-unused-labels
+export default reportWebVitals
