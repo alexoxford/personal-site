@@ -1,9 +1,7 @@
-import React from 'react'
-import './App.css'
-import { Graph, GraphProps } from './components/Graph'
-import { listVaccineDataPoints } from './graphql/queries'
+import { VaccineProgressGraph, VaccineProgressGraphProps } from './VaccineProgressGraph'
+import { listVaccineDataPoints } from '../../graphql/queries'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
-import awsconfig from './aws-exports'
+import awsconfig from '../../aws-exports'
 import { useAsync } from 'react-async'
 
 Amplify.configure(awsconfig)
@@ -43,7 +41,7 @@ const fetchData = async () => {
     .then(result => result.data.listVaccineDataPoints ? result.data.listVaccineDataPoints.items : new Array<DataPoint>())
 }
 
-function App () {
+function VaccinationApp () {
   const { data, error, isLoading } = useAsync({ promiseFn: fetchData })
 
   if (isLoading) { return (<p>"Loading..."</p>) }
@@ -51,13 +49,13 @@ function App () {
 
   if (!data) { return (<p>"Data is undefined"</p>) }
 
-  const props: GraphProps = {
+  const props: VaccineProgressGraphProps = {
     data: [{
       id: 'graphql-data',
       data: dataPointsToGraphDataPoints(data)
     }]
   }
-  const graph = Graph(props)
+  const graph = VaccineProgressGraph(props)
 
   return (
     <div className='App'>
@@ -70,4 +68,4 @@ function App () {
   )
 }
 
-export default App
+export default VaccinationApp
