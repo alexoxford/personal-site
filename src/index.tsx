@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './App.css'
 import VaccinationApp from './apps/vaccination/VaccinationApp';
+import HomepageApp from './apps/homepage/HomepageApp';
 
 ReactDOM.render(
   <Router>
@@ -17,7 +18,7 @@ ReactDOM.render(
       </Route>
 
       <Route path="/">
-        <VaccinationApp />
+        <HomepageApp />
       </Route>
     </Switch>
   </Router>,
