@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import App from './App'
+import VaccinationApp from './VaccinationApp'
 
 // Uncomment when mocking is set up
 // test('renders Vaccination App title', () => {
@@ -10,7 +10,7 @@ import App from './App'
 // });
 
 test('renders loading indicator', () => {
-  render(<App />)
+  render(<VaccinationApp />)
   const text = screen.getByText(/Loading/)
   expect(text).toBeInTheDocument
 })

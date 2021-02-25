@@ -8,7 +8,7 @@ import React from 'react'
 // website examples showcase many properties,
 // you'll often use just a few of them.
 
-export function Graph ({ data }: GraphProps) {
+export function VaccineProgressGraph ({ data }: VaccineProgressGraphProps) {
   return (
     <div style={{ height: 400 }}>
       <ResponsiveLine
@@ -40,7 +40,7 @@ export function Graph ({ data }: GraphProps) {
   )
 }
 
-export interface GraphProps {
+export interface VaccineProgressGraphProps {
   data: Array<{
     id: string
     data: Array<{

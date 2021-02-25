@@ -6,17 +6,18 @@ import {
 } from "react-router-dom";
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import './App.css'
+import VaccinationApp from './apps/vaccination/VaccinationApp';
 
 ReactDOM.render(
   <Router>
     <Switch>
-      <Route path="/">
-        <App />
+      <Route path="/vaccine">
+        <VaccinationApp />
       </Route>
 
-      <Route path="/vaccine">
-        <App />
+      <Route path="/">
+        <VaccinationApp />
       </Route>
     </Switch>
   </Router>,
