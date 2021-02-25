@@ -1,11 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Switch>
+      <Route path="/">
+        <App />
+      </Route>
+
+      <Route path="/vaccine">
+        <App />
+      </Route>
+    </Switch>
+  </Router>,
   document.getElementById('root')
 )
