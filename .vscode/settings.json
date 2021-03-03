@@ -1,4 +1,6 @@
 {
+  "javascript.validate.enable": false,
+  "standard.engine": "ts-standard",
   "files.exclude": {
     "amplify/.config": true,
     "amplify/**/*-parameters.json": true,

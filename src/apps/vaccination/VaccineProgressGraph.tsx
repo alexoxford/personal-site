@@ -1,51 +1,55 @@
-// install (please make sure versions match peerDependencies)
-// yarn add @nivo/core @nivo/line
-import { ResponsiveLine } from '@nivo/line'
-import React from 'react'
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
+import React, { ReactElement } from 'react'
+import { CartesianGrid, LineChart, Tooltip, XAxis, Line, ResponsiveContainer } from 'recharts'
 
-export function VaccineProgressGraph ({ data }: VaccineProgressGraphProps) {
+const dateFormat = Intl.DateTimeFormat('en', {
+  year: '2-digit',
+  month: 'numeric',
+  day: 'numeric',
+  timeZone: 'UTC'
+})
+
+const percentFormat = Intl.NumberFormat('en', {
+  maximumFractionDigits: 2,
+  style: 'percent'
+})
+
+export function VaccineProgressGraph ({ data }: VaccineProgressGraphProps): ReactElement {
   return (
-    <div style={{ height: 400 }}>
-      <ResponsiveLine
-        data={data}
-        margin={{ top: 10, right: 20, bottom: 50, left: 60 }}
-        xScale={{
-          type: 'time',
-          format: '%Y-%m-%d',
-          useUTC: false,
-          precision: 'day'
-        }}
-        xFormat='time:%Y-%m-%d'
-        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-        yFormat=' >-.2%'
-        axisLeft={{ format: '>-.2%' }}
-        axisBottom={{ format: '%b %d' }}
-        curve='monotoneX'
-        enablePointLabel={false}
-        pointSize={8}
-        pointBorderWidth={1}
-        pointBorderColor={{
-          from: 'color',
-          modifiers: [['darker', 0.3]]
-        }}
-        useMesh
-        enableSlices={false}
-      />
+    <div style={{ height: 400, width: '90%', margin: '0 auto' }}>
+      <ResponsiveContainer>
+        <LineChart
+          data={data}
+          margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+        >
+
+          <XAxis
+            dataKey='x'
+            type='number'
+            name='Date'
+            domain={['auto', 'auto']}
+            scale='time'
+            interval='preserveStartEnd'
+            tickFormatter={(value: number) => { return dateFormat.format(new Date(value)) }}
+          />
+
+          <Tooltip
+            separator=''
+            labelFormatter={(value: number) => { return dateFormat.format(new Date(value)) }}
+            formatter={(value: number) => { return [percentFormat.format(value), ''] }}
+          />
+
+          <CartesianGrid stroke='#f5f5f5' />
+
+          <Line type='monotone' dataKey='y' stroke='#ff7300' />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   )
 }
 
 export interface VaccineProgressGraphProps {
   data: Array<{
-    id: string
-    data: Array<{
-      x: string
-      y: number
-    }>
+    x: number
+    y: number
   }>
 }

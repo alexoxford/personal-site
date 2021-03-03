@@ -3,6 +3,7 @@ import { listVaccineDataPoints } from '../../graphql/queries'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
 import awsconfig from '../../aws-exports'
 import { useAsync } from 'react-async'
+import { ReactElement } from 'react'
 
 Amplify.configure(awsconfig)
 
@@ -13,7 +14,7 @@ interface DataPoint {
 }
 
 interface GraphDataPoint {
-  x: string
+  x: number
   y: number
 }
 
@@ -23,7 +24,7 @@ function dataPointsToGraphDataPoints (points: DataPoint[]): GraphDataPoint[] {
   return points
     .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
     .map((point) => {
-      return { x: point.date, y: point.vaccinations / dosesNeeded }
+      return { x: Date.parse(point.date), y: point.vaccinations / dosesNeeded }
     })
 }
 
@@ -35,25 +36,21 @@ interface DataPointList {
   }
 }
 
-const fetchData = async () => {
+const fetchData = async (): Promise<DataPoint[]> => {
   // queries and mutations return Promises; subscriptions return Observables
   return await (API.graphql(graphqlOperation(listVaccineDataPoints)) as Promise<DataPointList>)
-    .then(result => result.data.listVaccineDataPoints ? result.data.listVaccineDataPoints.items : new Array<DataPoint>())
+    .then(result => result.data.listVaccineDataPoints?.items ?? new Array<DataPoint>())
 }
 
-function VaccinationApp () {
+function VaccinationApp (): ReactElement {
   const { data, error, isLoading } = useAsync({ promiseFn: fetchData })
 
   if (isLoading) { return (<p>"Loading..."</p>) }
-  if (error) { return (<p>error</p>) }
-
-  if (!data) { return (<p>"Data is undefined"</p>) }
+  if (error != null) { return (<p>error</p>) }
+  if (data === undefined || data === null) { return (<p>"Data is undefined"</p>) }
 
   const props: VaccineProgressGraphProps = {
-    data: [{
-      id: 'graphql-data',
-      data: dataPointsToGraphDataPoints(data)
-    }]
+    data: dataPointsToGraphDataPoints(data)
   }
   const graph = VaccineProgressGraph(props)
 

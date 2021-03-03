@@ -12,5 +12,5 @@ import VaccinationApp from './VaccinationApp'
 test('renders loading indicator', () => {
   render(<VaccinationApp />)
   const text = screen.getByText(/Loading/)
-  expect(text).toBeInTheDocument
+  expect(text).toBeInTheDocument()
 })
