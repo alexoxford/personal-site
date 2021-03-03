@@ -1,23 +1,23 @@
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route
-} from "react-router-dom";
-import ReactDOM from 'react-dom';
-import './index.css';
+} from 'react-router-dom'
+import ReactDOM from 'react-dom'
+import './index.css'
 import './App.css'
-import VaccinationApp from './apps/vaccination/VaccinationApp';
-import HomepageApp from './apps/homepage/HomepageApp';
+import VaccinationApp from './apps/vaccination/VaccinationApp'
+import HomepageApp from './apps/homepage/HomepageApp'
 
 ReactDOM.render(
   <Router>
     <Switch>
-      <Route path="/vaccine">
+      <Route path='/vaccine'>
         <VaccinationApp />
       </Route>
 
-      <Route path="/">
+      <Route path='/'>
         <HomepageApp />
       </Route>
     </Switch>
