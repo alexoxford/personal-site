@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { CartesianGrid, LineChart, Tooltip, XAxis, Line, ResponsiveContainer } from 'recharts'
+import { CartesianGrid, LineChart, Tooltip, XAxis, Line, ResponsiveContainer, YAxis } from 'recharts'
 
 const dateFormat = Intl.DateTimeFormat('en', {
   year: '2-digit',
@@ -25,11 +25,16 @@ export function VaccineProgressGraph ({ data }: VaccineProgressGraphProps): Reac
           <XAxis
             dataKey='x'
             type='number'
-            name='Date'
             domain={['auto', 'auto']}
             scale='time'
             interval='preserveStartEnd'
             tickFormatter={(value: number) => { return dateFormat.format(new Date(value)) }}
+          />
+
+          <YAxis
+            dataKey='y'
+            domain={[0, 1]}
+            tickFormatter={(value: number) => { return percentFormat.format(value) }}
           />
 
           <Tooltip
@@ -41,6 +46,7 @@ export function VaccineProgressGraph ({ data }: VaccineProgressGraphProps): Reac
           <CartesianGrid stroke='#f5f5f5' />
 
           <Line type='monotone' dataKey='y' stroke='#ff7300' />
+          <Line type='monotone' dataKey='trend' stroke='#00ff00' />
         </LineChart>
       </ResponsiveContainer>
     </div>
@@ -50,6 +56,7 @@ export function VaccineProgressGraph ({ data }: VaccineProgressGraphProps): Reac
 export interface VaccineProgressGraphProps {
   data: Array<{
     x: number
-    y: number
+    y: number | null
+    trend: number | null
   }>
 }
