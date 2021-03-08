@@ -1,4 +1,5 @@
 $enable-gradients: true;
+
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 .homepage-wrapper {
@@ -44,17 +45,20 @@ $enable-gradients: true;
     flex-direction: row-reverse;
     padding: 0.5rem;
   }
+
   .homepage-content {
     width: unset;
     flex-grow: 1;
     padding: 0.5rem;
   }
+
   .homepage-sidebar {
     min-width: min-content;
     max-width: min-content;
     overflow: hidden;
     border: 1px solid grey;
     flex-shrink: 1.5;
+
     @include border-top-radius(1rem);
     @include border-bottom-radius(0.25rem);
 
