@@ -4,11 +4,10 @@ $enable-gradients: true;
 .homepage-wrapper {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
 }
 
 .homepage-content {
-  padding: 0.5rem;
+  padding: 1rem;
   width: 100%;
 }
 
@@ -48,12 +47,14 @@ $enable-gradients: true;
   .homepage-content {
     width: unset;
     flex-grow: 1;
+    padding: 0.5rem;
   }
   .homepage-sidebar {
-    width: min-content;
+    min-width: min-content;
+    max-width: min-content;
     overflow: hidden;
     border: 1px solid grey;
-    flex-shrink: 1;
+    flex-shrink: 1.5;
     @include border-top-radius(1rem);
     @include border-bottom-radius(0.25rem);
 
@@ -61,6 +62,10 @@ $enable-gradients: true;
       position: unset;
       padding: unset;
       background-image: unset;
+    }
+
+    & p {
+      margin: 0;
     }
   }
 }
