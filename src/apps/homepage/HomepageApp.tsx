@@ -1,10 +1,15 @@
 import { ReactElement } from 'react'
-import './HomepageApp.css'
+import './HomepageApp.scss'
+import HomepageSidebar from './HomepageSidebar'
 
 function HomepageApp (): ReactElement {
   return (
     <div className='homepage-wrapper'>
-      <p>Placeholder Homepage</p>
+      <HomepageSidebar />
+
+      <div className='homepage-content'>
+        <p>Placeholder Homepage</p>
+      </div>
     </div>
   )
 }
