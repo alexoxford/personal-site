@@ -7,15 +7,17 @@ function HomepageSidebar (): ReactElement {
     <div className='homepage-sidebar'>
       <Image src={profilePicture} alt='A picture of Alex leaning against a brick wall' fluid />
 
-      <p style={{ padding: '0.25rem', width: 'max-content' }}>
-        <span className='stats'>Name: </span>Alex<br />
-        <span className='stats'>Pronouns: </span>She/They<br />
-        <span className='stats'>Party: </span>Communist<br />
-        <span className='stats'>Stamina: </span>⬤◯◯◯◯<br />
-        <span className='stats'>Strength: </span>⬤◯◯◯◯<br />
-        <span className='stats'>Problem Solving: </span>⬤⬤◯◯◯<br />
-        <span className='stats'>Problem Causing: </span>⬤⬤⬤⬤⬤
-      </p>
+      <div className='text-wrapper'>
+        <p>
+          <span className='stats'>Name: </span>Alex<br />
+          <span className='stats'>Pronouns: </span>She/They<br />
+          <span className='stats'>Party: </span>Communist<br />
+          <span className='stats'>Stamina: </span>⬤◯◯◯◯<br />
+          <span className='stats'>Strength: </span>⬤◯◯◯◯<br />
+          <span className='stats'>Problem Solving: </span>⬤⬤◯◯◯<br />
+          <span className='stats'>Problem Causing: </span>⬤⬤⬤⬤⬤
+        </p>
+      </div>
     </div>
   )
 }

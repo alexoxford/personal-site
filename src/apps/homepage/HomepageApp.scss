@@ -1,3 +1,4 @@
+$enable-gradients: true;
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 .homepage-wrapper {
@@ -14,10 +15,26 @@
 .homepage-sidebar {
   width: 100%;
   font-size: 0.875rem;
+  position: relative;
 
   & span.stats {
     width: 9rem;
     display: inline-block;
+  }
+
+  & div.text-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-top: 2rem;
+
+    @include gradient-y-three-colors(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), 2rem, white);
+  }
+
+  & p {
+    padding: 0.25rem;
+    width: max-content;
+    margin: 0 auto;
   }
 }
 
@@ -39,5 +56,11 @@
     flex-shrink: 1;
     @include border-top-radius(1rem);
     @include border-bottom-radius(0.25rem);
+
+    & div.text-wrapper {
+      position: unset;
+      padding: unset;
+      background-image: unset;
+    }
   }
 }
