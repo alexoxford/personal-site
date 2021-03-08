@@ -1,0 +1,43 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.homepage-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.homepage-content {
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.homepage-sidebar {
+  width: 100%;
+  font-size: 0.875rem;
+
+  & span.stats {
+    width: 9rem;
+    display: inline-block;
+  }
+}
+
+/* Desktop */
+
+@include media-breakpoint-up(md) {
+  .homepage-wrapper {
+    flex-direction: row-reverse;
+    padding: 0.5rem;
+  }
+  .homepage-content {
+    width: unset;
+    flex-grow: 1;
+  }
+  .homepage-sidebar {
+    width: min-content;
+    overflow: hidden;
+    border: 1px solid grey;
+    flex-shrink: 1;
+    @include border-top-radius(1rem);
+    @include border-bottom-radius(0.25rem);
+  }
+}
