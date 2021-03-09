@@ -26,3 +26,4 @@ jobs:
           FILTER_REGEX_INCLUDE: .*src/.*
           FILTER_REGEX_EXCLUDE: .*src/(API.ts|models/.*)
           VALIDATE_ALL_CODEBAS: false
+          CSS_FILENAME: .stylelintrc.json
