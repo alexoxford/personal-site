@@ -16,7 +16,7 @@ import twitterLogo from './images/Twitter-logo-blue.svg'
 ReactDOM.render(
   <Router>
 
-    <Navbar bg='dark' variant='dark' expand='lg'>
+    <Navbar bg='dark' variant='dark' expand='md'>
       <Navbar.Brand>Alex's Crappy Site</Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>

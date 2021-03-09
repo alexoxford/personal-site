@@ -1,0 +1,75 @@
+$enable-gradients: true;
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.homepage-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-content {
+  padding: 1rem;
+  width: 100%;
+}
+
+.homepage-sidebar {
+  width: 100%;
+  font-size: 0.875rem;
+  position: relative;
+
+  & span.stats {
+    width: 9rem;
+    display: inline-block;
+  }
+
+  & div.text-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-top: 2rem;
+
+    @include gradient-y-three-colors(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), 2rem, white);
+  }
+
+  & p {
+    padding: 0.25rem;
+    width: max-content;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop */
+
+@include media-breakpoint-up(md) {
+  .homepage-wrapper {
+    flex-direction: row-reverse;
+    padding: 0.5rem;
+  }
+
+  .homepage-content {
+    width: unset;
+    flex-grow: 1;
+    padding: 0.5rem;
+  }
+
+  .homepage-sidebar {
+    min-width: min-content;
+    max-width: min-content;
+    overflow: hidden;
+    border: 1px solid grey;
+    flex-shrink: 1.5;
+
+    @include border-top-radius(1rem);
+    @include border-bottom-radius(0.25rem);
+
+    & div.text-wrapper {
+      position: unset;
+      padding: unset;
+      background-image: unset;
+    }
+
+    & p {
+      margin: 0;
+    }
+  }
+}
